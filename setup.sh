@@ -15,6 +15,10 @@ chmod 0775 $HOME/camera_startup.sh
 sudo systemctl enable rpi-camera.service 
 sudo systemctl start rpi-camera.service
 
+# Set up time synchronizing services to only start camera service after the time has been synchronized
+sudo systemctl enable systemd-timesyncd.service
+sudo systemctl enable systemd-time-wait-sync.service
+
 python -m venv --system-site-packages .venv
 source .venv/bin/activate
 pip install -e . 
